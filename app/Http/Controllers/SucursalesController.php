@@ -36,28 +36,22 @@ class SucursalesController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Sucursales $sucursales)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Sucursales $sucursales)
+    public function edit( $id_sucursal)
     {
-        //
+        $sucursal = Sucursales::find($id_sucursal);
+        return response ()->json($sucursal);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sucursales $sucursales)
+    public function update(Request $request)
     {
-        //
+        Sucursales::where('id', $request->id)->update([
+            'nombre' => $request->nombre
+        ]);
+        return redirect('Sucursales')->with('success', 'Se ha actualizado la sucursal correctamente');
     }
 
     /**
