@@ -41,7 +41,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-primary btn-flat">Mis Datos</a>
+                  <a href="{{url('Mis-Datos')}}" class="btn btn-primary btn-flat">Mis Datos</a>
                 </div>
                 <div class="pull-right">
                   <a href=" route('{{ route('logout') }}')" class="btn btn-danger btn-flat" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salirt</a>
