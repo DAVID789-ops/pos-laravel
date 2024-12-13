@@ -29,3 +29,4 @@ Route::get('Cambiar-Estado-Sucursal/{estado}/{id_sucursal}', [SucursalesControll
 Route::get('Mis-Datos', function () {
     return view('modulos.users.Mis-Datos');
 });
+Route::post('Mis-Datos', [UsuariosController::class, 'ActualizarMisDatos']);

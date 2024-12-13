@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 class UsuariosController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
  /**
     *public function PrimerUsuario(){
     *    User::create([
@@ -28,6 +32,42 @@ class UsuariosController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function AtualizarMisDatos(Request $request){
+        $datos = request();
+        if(auth()->user()->email != request('email')){
+            if(request('password')){
+                $datos = request()->validate([
+                    'name' => ['required', 'string', 'max:50'],
+                    'email' => ['required', 'email', 'unique:users'],
+                    'password' => ['required', 'string', 'min:3'],
+                ]);
+
+            } else {
+                $datos = request()->validate([
+                    'name' => ['required', 'string', 'max:50'],
+                    'email' => ['required', 'email', 'unique:users'],
+                ]);
+            }
+
+        }else{
+            if(request('password')){
+                $datos = request()->validate([
+                    'name' => ['required', 'string', 'max:50'],
+                    'email' => ['required', 'email'],
+                    'password' => ['required', 'string', 'min:3'],
+                ]);
+
+            } else {
+                $datos = request()->validate([
+                    'name' => ['required', 'string', 'max:50'],
+                    'email' => ['required', 'email', 'unique:users'],
+                ]);
+            }
+        }
+        if(request('fotoPerfil')){
+            if(auth()->user()->foto != ''){
+    }
     public function index()
     {
         //
